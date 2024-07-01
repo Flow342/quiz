@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import DefaultButton from "../UI/DefaultButton/DefaultButton";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const QuizPlaying = () => {
@@ -13,17 +14,19 @@ const QuizPlaying = () => {
     const [selectedAnswer, setSelectedAnswer] = useState<number>(0);
     const [counter, setCounter] = useState<number>(0);
     const [answers, setAnswers] = useState<number[]>([]);
+    const defaultStyle: React.CSSProperties = {
+        color: "white",
+        background: "transparent",
+        border: "2px solid #0077ff",
+        transition: "0.5s",
+    };
     const wrong: React.CSSProperties = {
         background: "red",
-        color: "white",
-        border: "none",
     };
     console.log(quiz.questions);
 
     const correct: React.CSSProperties = {
         background: "lightgreen",
-        color: "white",
-        border: "none",
     };
 
     const answerCheck = (index: number) => {
@@ -46,13 +49,14 @@ const QuizPlaying = () => {
     const toggleStyle = (index: number) => {
         if (!checked) {
             if (index === quiz.questions[currentQuestion].answer) {
-                return correct;
+                return { ...defaultStyle, ...correct };
             }
             if (index === selectedAnswer) {
                 if (selectedAnswer !== quiz.questions[currentQuestion].answer) {
-                    return wrong;
+                    return { ...defaultStyle, ...wrong };
                 }
             }
+            return { ...defaultStyle, border: "2px solid #292929" };
         }
     };
 
@@ -60,22 +64,27 @@ const QuizPlaying = () => {
         <div>
             {isPlaying ? (
                 <div>
-                    <div>{quiz.questions[currentQuestion].question}</div>
+                    <div style={{ fontSize: 40, fontWeight: 800, margin: 5 }}>
+                        {quiz.questions[currentQuestion].question}
+                    </div>
                     {quiz.questions[currentQuestion].items.map(
                         (item: string, index: number) => (
-                            <button
+                            <DefaultButton
                                 style={toggleStyle(index)}
                                 disabled={!checked}
                                 onClick={() => answerCheck(index)}
                                 key={index}
                             >
                                 {item}
-                            </button>
+                            </DefaultButton>
                         )
                     )}
-                    <button disabled={checked} onClick={() => nextQuestion()}>
+                    <DefaultButton
+                        disabled={checked}
+                        onClick={() => nextQuestion()}
+                    >
                         Следующий вопрос
-                    </button>
+                    </DefaultButton>
                 </div>
             ) : (
                 <div>{counter + " / " + quiz.questions.length}</div>

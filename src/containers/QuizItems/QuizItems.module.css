@@ -1,0 +1,27 @@
+.item {
+    border: 1px solid #0077ff;
+    border-radius: 20px;
+    background-color: #222;
+    margin: 15px 0;
+    display: flex;
+}
+
+.wrapper {
+    display: flex;
+    text-align: left;
+    width: 70vw;
+    padding: 20px;
+}
+
+.text_left {
+    justify-content: left;
+}
+
+.item_name_body {
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.buttons {
+    padding: 20px 0;
+}

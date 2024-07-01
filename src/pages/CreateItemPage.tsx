@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { PropsCreateQuizItem, quizItem } from "../interfaces/interfaces";
+import DefaultButton from "../UI/DefaultButton/DefaultButton";
+import TextInput from "../UI/TextInput/TextInput";
 
-const CreateQuizForm = ({
+const CreateListItemPage = ({
     quizContent,
     setQuizContent,
     index,
@@ -30,10 +32,10 @@ const CreateQuizForm = ({
     );
 
     return (
-        <div className="quizCreating">
-            <div className="question">
+        <div>
+            <div>
                 {index + 1}.
-                <input
+                <TextInput
                     placeholder="Вопрос"
                     value={quizItem.question}
                     onChange={(e) =>
@@ -51,7 +53,7 @@ const CreateQuizForm = ({
                             justifyContent: "center",
                         }}
                     >
-                        <input
+                        <TextInput
                             value={item}
                             placeholder="Ответ"
                             onChange={(e) =>
@@ -63,6 +65,7 @@ const CreateQuizForm = ({
                             }
                         />
                         <input
+                            style={{ accentColor: "green" }}
                             type="radio"
                             checked={
                                 itemIndex === quizItem.answer ? true : false
@@ -78,17 +81,17 @@ const CreateQuizForm = ({
                         />
                     </div>
                 ))}
-                <button
+                <DefaultButton
                     onClick={() =>
                         quizItemItems.length == 4 ||
                         setQuizItemItems([...quizItemItems, ""])
                     }
                 >
-                    +
-                </button>
+                    Добавить ответ
+                </DefaultButton>
             </div>
         </div>
     );
 };
 
-export default CreateQuizForm;
+export default CreateListItemPage;

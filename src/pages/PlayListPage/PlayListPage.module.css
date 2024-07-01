@@ -1,0 +1,31 @@
+.heading {
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.container {
+    border: 1px solid #0077ff;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #222;
+    width: 70vw;
+    padding: 20px 0;
+}
+
+.button_container {
+    align-self: right;
+    padding-right: 40px;
+}
+
+.item_name_body {
+    font-weight: 700;
+    font-size: 30px;
+    padding-left: 20px;
+}

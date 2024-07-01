@@ -31,8 +31,11 @@ const quizSlice = createSlice({
         editQuiz: (state, action: PayloadAction<quiz>) => {
             state[action.payload.id] = action.payload;
         },
+        deleteItem: (state, action: PayloadAction<quiz>) => {
+            state.splice(action.payload.id);
+        },
     },
 });
 
-export const { newQuiz, editQuiz } = quizSlice.actions;
+export const { newQuiz, editQuiz, deleteItem } = quizSlice.actions;
 export default quizSlice.reducer;
